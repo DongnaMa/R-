@@ -1,0 +1,62 @@
+library(ggplot2)
+library(RColorBrewer)
+data <- read.table("C:\\Users\\东东\\Desktop\\MJQ\\多肽.csv",sep = ",",header = TRUE)
+
+data$Name <- factor(data$Name,levels= c("GRGPTVTDP","NDDRDSYNL","RVPAGTTY","DFEGDV","SDNFEY","RYDDF"))
+ggplot(data,aes(x=Name,y=value,fill=variable))+
+geom_bar(mapping = NULL, data = NULL,stat="identity",position="stack", color="black", width=0.7,size=0.8)+
+scale_fill_brewer(palette = "Set3")+
+labs(x = "Peptides",y = "Percentage (%)",size = 15)+
+# 坐标轴延伸，确保图形元素覆盖至坐标
+scale_y_continuous(limits = c(0,200))+
+# 主题类型
+theme_classic()+
+# 设置主题
+theme(panel.background=element_rect(fill="white",colour="black",size=0.8), 
+legend.position = "bottom",# 填充框内主题颜色，边框颜色和边框线条粗细
+axis.line=element_line(colour="black",size=0.8), # x,y轴颜色，粗细
+axis.title=element_text(size=13,color="black"), # x,y轴名设置
+axis.text = element_text(size=13,color="black"), # x,y轴文本设置
+legend.text = element_text(colour="black", size=13),
+title=element_text(size=13,color="black"))+
+# 显示图例，c(x,y)这里指将轴默认为1，里面的数字为轴的占比
+coord_flip()
+
+#模拟数据
+variable	Name	value
+basic amino acid	RVPAGTTY	12.5
+hydrophobic amino acid	RVPAGTTY	37.5
+hydrophilic amino acid	RVPAGTTY	50
+sweet amino acid	RVPAGTTY	62.5
+bitter amino acids	RVPAGTTY	25
+umami amino acid	RVPAGTTY	0
+basic amino acid	SDNFEY	0
+hydrophobic amino acid	SDNFEY	16.67
+hydrophilic amino acid	SDNFEY	50
+sweet amino acid	SDNFEY	16.67
+bitter amino acids	SDNFEY	33.33
+umami amino acid	SDNFEY	33.33
+basic amino acid	DFEGDV	0
+hydrophobic amino acid	DFEGDV	33.33
+hydrophilic amino acid	DFEGDV	16.67
+sweet amino acid	DFEGDV	16.67
+bitter amino acids	DFEGDV	33.33
+umami amino acid	DFEGDV	50
+basic amino acid	NDDRDSYNL	11.11
+hydrophobic amino acid	NDDRDSYNL	11.11
+hydrophilic amino acid	NDDRDSYNL	44.44
+sweet amino acid	NDDRDSYNL	11.11
+bitter amino acids	NDDRDSYNL	22.22
+umami amino acid	NDDRDSYNL	33.33
+basic amino acid	GRGPTVTDP	11.11
+hydrophobic amino acid	GRGPTVTDP	33.33
+hydrophilic amino acid	GRGPTVTDP	44.44
+sweet amino acid	GRGPTVTDP	66.67
+bitter amino acids	GRGPTVTDP	11.11
+umami amino acid	GRGPTVTDP	11.11
+basic amino acid	RYDDF	20
+hydrophobic amino acid	RYDDF	20
+hydrophilic amino acid	RYDDF	20
+sweet amino acid	RYDDF	0
+bitter amino acids	RYDDF	40
+umami amino acid	RYDDF	40
