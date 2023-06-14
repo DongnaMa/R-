@@ -1,0 +1,34 @@
+#ggradar只适合位于0~1之间的数据，应用范围有限
+install.packages("ggradar")
+install.packages("stringi")
+install.packages("scales")
+install.packages("devtools")
+
+library("ggradar")
+library("dplyr")
+library("scales")
+library("tibble")
+dt <- read.csv("C:\\Users\\东东\\Desktop\\鲜味雷达图.csv",header = T)
+dt <- as_tibble(dt)
+colnames(dt)[1] <- "name"
+mycolor <- c("#f8b195","#f67280","#c06c84","#6c567b","#99ddcc","red")
+ggradar(dt,
+values.radar = c("0", "0.5", "1"),
+grid.line.width = 0.5,
+group.line.width=0.8,
+grid.label.size=7,
+group.point.size=3,
+background.circle.transparency=0.2,
+group.colours=mycolor,
+legend.position="right"
+)
+
+
+数据
+name	Bitterness	Saltiness	Sweetness	Umami	Sourness
+F0	0.114	0.314	0.257	0.6	0.171
+F2 	0.086	0.371	0.143	0.629	0.086
+F30	0.086	0.343	0.2	0.686	0.2
+F60	0.114	0.543	0.171	0.914	0.143
+F90	0.171	0.629	0.171	0.971	0.143
+Standard	1.00 	1.00 	1.00 	1.00 	1.00 
