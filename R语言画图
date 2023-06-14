@@ -1,0 +1,18 @@
+雷达图
+install.packages("ggradar2")
+install.packages("stringi")
+install.packages("scales")
+install.packages("devtools")
+
+library("ggradar2")
+library("dplyr")
+library("scales")
+library("tibble")
+dt <- read.csv("C:\\Users\\东东\\Desktop\\鲜味雷达图.csv",header = T)
+dt <- as_tibble(dt)
+colnames(dt)[1] <- "name"
+ggradar(dt,
+grid.label.size=7,
+group.point.size=3,
+group.line.width=1
+)
